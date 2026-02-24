@@ -11,6 +11,7 @@ interface IUser {
 }
 
 
+
 // 2️⃣ Interface for User Document (adds methods)
 interface IUserDocument extends IUser, Document {
   comparePassword(enteredPassword: string): Promise<boolean>;

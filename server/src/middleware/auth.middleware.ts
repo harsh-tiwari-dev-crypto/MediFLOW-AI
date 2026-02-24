@@ -40,3 +40,15 @@ export const protect = (req: Request, res: Response, next: NextFunction) => {
     });
   }
 };
+
+export const authorizeRoles = (...roles: string[]) => {
+  return (req: any, res: Response, next: NextFunction) => {
+    if (!roles.includes(req.user.role)) {
+      return res.status(403).json({
+        success: false,
+        message: "Access denied"
+      });
+    }
+    next();
+  };
+};
