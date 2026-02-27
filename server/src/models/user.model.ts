@@ -8,12 +8,13 @@ interface IUser {
   email: string;
   password: string;
   role: "admin" | "user";
+  refreshToken?: string;
 }
 
 
 
 // 2️⃣ Interface for User Document (adds methods)
-interface IUserDocument extends IUser, Document {
+export interface IUserDocument extends IUser, Document {
   comparePassword(enteredPassword: string): Promise<boolean>;
 }
 
@@ -29,6 +30,10 @@ const userSchema = new mongoose.Schema<IUserDocument>(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     role: { type: String, enum: ["admin", "user"], default: "user" },
+
+    refreshToken: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

@@ -28,17 +28,17 @@ export const getAllPatientsService = async ({
 
   const filter: any = {};
 
-  // 🔍 Search by name (case insensitive)
+  //Search by name (case insensitive)
   if (search) {
     filter.name = { $regex: search, $options: "i" };
   }
 
-  // 👤 Filter by gender
+  //Filter by gender
   if (gender) {
     filter.gender = gender;
   }
 
-  // 🎯 Filter by age range
+  //Filter by age range
   if (minAge !== undefined || maxAge !== undefined) {
     filter.age = {};
 
